@@ -3,6 +3,9 @@
 
 코딩 테스트 준비를 위한 스터디입니다.
 
+![Image](https://github.com/user-attachments/assets/913ec88f-60b1-40e2-8c11-f3807cfe6eaf)
+
+
 ## 개요
 * 기간: 2025년 3월 ~
 * 정기 회의: 월요일 오후 7시 집현전
