@@ -9,7 +9,7 @@
 ## 개요
 * 기간: 2025년 3월 ~
 * 정기 회의: 월요일 오후 7시 집현전
-* 참고 사이트: [프로그래머스](https://programmers.co.kr/)
+* 참고 사이트: [프로그래머스](https://programmers.co.kr/) , [백준](https://www.acmicpc.net/)
 * 교재: 이것이 취업을 위한 코딩 테스트다 with 파이썬 (저자: 나동빈)
 * 언어: C++ , Python
 
