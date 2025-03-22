@@ -1,0 +1,35 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// 정렬 기준: 숫자를 이어붙였을 때 더 큰 순서로 정렬
+bool compare(string a, string b) {
+    return a + b > b + a;  // "XY" vs "YX" 비교
+}
+
+string solution(vector<int> numbers) {
+    vector<string> strNumbers;
+
+    // 숫자를 문자열로 변환
+    for (int num : numbers) {
+        strNumbers.push_back(to_string(num));
+    }
+
+    // 정렬 수행
+    sort(strNumbers.begin(), strNumbers.end(), compare);
+
+    // 정렬된 숫자들을 이어붙이기
+    string answer = "";
+    for (string s : strNumbers) {
+        answer += s;
+    }
+
+    // "000..." 같은 경우 "0"으로 변환
+    if (answer[0] == '0') {
+        return "0";
+    }
+
+    return answer;
+}
