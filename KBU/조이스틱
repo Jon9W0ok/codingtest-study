@@ -1,0 +1,21 @@
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int solution(string name) {
+    int n = name.size();
+    int min_move = n - 1;
+    int total_up_down = 0;
+    
+    for (int i = 0; i < n; ++i) {
+        total_up_down += min(name[i] - 'A', 'Z' - name[i] + 1);
+        
+        int next_index = i + 1;
+        while (next_index < n && name[next_index] == 'A') ++next_index;
+        
+        min_move = min({min_move, 2 * i + (n - next_index), i + 2 * (n - next_index)});
+    }
+    
+    return total_up_down + min_move;
+}
