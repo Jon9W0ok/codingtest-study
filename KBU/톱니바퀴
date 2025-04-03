@@ -1,0 +1,84 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// 톱니바퀴를 오른쪽으로 돌리는 함수
+void rotateRight(vector<char>& gear) {
+    char last = gear[7]; // 마지막 톱니 기억
+    for (int i = 7; i > 0; i--) {
+        gear[i] = gear[i - 1]; // 한 칸씩 오른쪽으로 밀기
+    }
+    gear[0] = last; // 맨 앞에 마지막 톱니 넣기
+}
+
+// 톱니바퀴를 왼쪽으로 돌리는 함수
+void rotateLeft(vector<char>& gear) {
+    char first = gear[0]; // 첫 번째 톱니 기억
+    for (int i = 0; i < 7; i++) {
+        gear[i] = gear[i + 1]; // 한 칸씩 왼쪽으로 밀기
+    }
+    gear[7] = first; // 맨 뒤에 첫 톱니 넣기
+}
+
+int main() {
+    vector<vector<char>> gears(4); // 톱니바퀴 4개
+
+    // 톱니바퀴 상태 입력
+    for (int i = 0; i < 4; i++) {
+        string line;
+        cin >> line;
+        for (int j = 0; j < 8; j++) {
+            gears[i].push_back(line[j]);
+        }
+    }
+
+    int k;
+    cin >> k; // 회전 횟수
+
+    while (k--) {
+        int num, dir;
+        cin >> num >> dir;
+        num -= 1; // 톱니 번호는 0부터 시작하도록
+
+        int rotateDir[4] = {0, 0, 0, 0}; // 각 톱니바퀴가 어떤 방향으로 도는지 저장
+        rotateDir[num] = dir;
+
+        // 왼쪽 톱니 확인
+        for (int i = num - 1; i >= 0; i--) {
+            if (gears[i][2] != gears[i + 1][6]) {
+                rotateDir[i] = -rotateDir[i + 1]; // 극이 다르면 반대로 돌림
+            } else {
+                break; // 같으면 더 안 봐도 됨
+            }
+        }
+
+        // 오른쪽 톱니 확인
+        for (int i = num + 1; i < 4; i++) {
+            if (gears[i - 1][2] != gears[i][6]) {
+                rotateDir[i] = -rotateDir[i - 1];
+            } else {
+                break;
+            }
+        }
+
+        // 실제 회전
+        for (int i = 0; i < 4; i++) {
+            if (rotateDir[i] == 1) {
+                rotateRight(gears[i]);
+            } else if (rotateDir[i] == -1) {
+                rotateLeft(gears[i]);
+            }
+        }
+    }
+
+    // 점수 계산
+    int score = 0;
+    if (gears[0][0] == '1') score += 1;
+    if (gears[1][0] == '1') score += 2;
+    if (gears[2][0] == '1') score += 4;
+    if (gears[3][0] == '1') score += 8;
+
+    cout << score << endl;
+    return 0;
+}
