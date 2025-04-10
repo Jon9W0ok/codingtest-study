@@ -12,6 +12,7 @@ void dfs(string start, int ticketCnt){
     //현재 까지 사용한 항공권 개수가 전체 항공권 개수와 같다면
     if (ticketCnt == ticket.size()) { 
         isAnswer = true;
+        return;
     }
     
     for (int i = 0; i < ticket.size(); i++) {
