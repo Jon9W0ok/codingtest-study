@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-N, M, x, y, r = map(int, input().split())
+N, M, y, x, r = map(int, input().split())
 
 maps = []
 for row in range(N):
@@ -42,6 +42,3 @@ for d in direction:
 
     #4. 출력
     print(scores[top-1])
-    # print(maps)
-    # print()
-   
